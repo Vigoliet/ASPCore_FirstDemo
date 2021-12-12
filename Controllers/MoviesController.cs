@@ -23,14 +23,14 @@ namespace MvcMovie.Controllers
         // {
         //     return View(await _context.Movie.ToListAsync());
         // }
-        public async Task<IActionResult> Index(string id)
+        public async Task<IActionResult> Index(string searchstring)
         {
             var movies = from m in _context.Movie
                         select m;
 
-            if (!String.IsNullOrEmpty(id))
+            if (!String.IsNullOrEmpty(searchstring))
             {
-                movies = movies.Where(s => s.Title!.Contains(id));
+                movies = movies.Where(s => s.Title!.Contains(searchstring));
             }
 
             return View(await movies.ToListAsync());
